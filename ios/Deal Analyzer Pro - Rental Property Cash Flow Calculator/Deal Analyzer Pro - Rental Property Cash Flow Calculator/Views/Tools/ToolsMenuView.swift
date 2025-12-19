@@ -16,11 +16,33 @@ struct ToolsMenuView: View {
     @State private var showingRentEstimator: Bool = false
     @State private var showingMarketResearch: Bool = false
     @State private var showingDealRating: Bool = false
+    @State private var showingTemplates: Bool = false
+    @State private var showingRepairs: Bool = false
+    @State private var showingTaxBenefits: Bool = false
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 16) {
+                    // Quick Start
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("QUICK START")
+                            .font(AppFonts.metricLabel)
+                            .foregroundColor(AppColors.textSecondary)
+                        
+                        ToolMenuItem(
+                            icon: "doc.badge.plus",
+                            title: "Deal Templates",
+                            subtitle: "Quick-start with pre-filled templates",
+                            color: .cyan
+                        ) {
+                            showingTemplates = true
+                        }
+                    }
+                    .padding()
+                    .background(AppColors.cardBackground)
+                    .cornerRadius(16)
+                    
                     // Calculator Tools
                     VStack(alignment: .leading, spacing: 12) {
                         Text("CALCULATORS")
@@ -44,6 +66,26 @@ struct ToolsMenuView: View {
                         ) {
                             showingRentEstimator = true
                         }
+                        
+                        ToolMenuItem(
+                            icon: "wrench.and.screwdriver.fill",
+                            title: "Repair Estimator",
+                            subtitle: "Itemized rehab cost calculator",
+                            color: .orange,
+                            isPremium: true
+                        ) {
+                            showingRepairs = true
+                        }
+                        
+                        ToolMenuItem(
+                            icon: "percent",
+                            title: "Tax Benefits",
+                            subtitle: "Depreciation & deduction calculator",
+                            color: .purple,
+                            isPremium: true
+                        ) {
+                            showingTaxBenefits = true
+                        }
                     }
                     .padding()
                     .background(AppColors.cardBackground)
@@ -59,7 +101,7 @@ struct ToolsMenuView: View {
                             icon: "star.fill",
                             title: "Deal Score",
                             subtitle: "Get an overall rating for this deal",
-                            color: .orange
+                            color: .yellow
                         ) {
                             showingDealRating = true
                         }
@@ -68,7 +110,7 @@ struct ToolsMenuView: View {
                             icon: "map.fill",
                             title: "Market Research",
                             subtitle: "View market data and comparables",
-                            color: .purple,
+                            color: .pink,
                             isPremium: true
                         ) {
                             showingMarketResearch = true
@@ -91,16 +133,6 @@ struct ToolsMenuView: View {
                             color: .teal
                         ) {
                             viewModel.useLastExpenses()
-                            dismiss()
-                        }
-                        
-                        ToolMenuItem(
-                            icon: "doc.on.doc.fill",
-                            title: "Duplicate Deal",
-                            subtitle: "Create a copy to test variations",
-                            color: .indigo
-                        ) {
-                            // Already a copy since we're editing in-memory
                             dismiss()
                         }
                         
@@ -140,6 +172,15 @@ struct ToolsMenuView: View {
             }
             .sheet(isPresented: $showingDealRating) {
                 DealRatingView(viewModel: viewModel)
+            }
+            .sheet(isPresented: $showingTemplates) {
+                DealTemplatesView(viewModel: viewModel)
+            }
+            .sheet(isPresented: $showingRepairs) {
+                RepairEstimatorView(viewModel: viewModel)
+            }
+            .sheet(isPresented: $showingTaxBenefits) {
+                TaxBenefitsView(viewModel: viewModel)
             }
         }
     }
