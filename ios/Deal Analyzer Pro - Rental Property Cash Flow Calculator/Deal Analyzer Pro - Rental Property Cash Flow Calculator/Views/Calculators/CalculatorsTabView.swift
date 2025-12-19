@@ -17,6 +17,8 @@ struct CalculatorsTabView: View {
     @State private var showingRefinance: Bool = false
     @State private var showingClosingCosts: Bool = false
     @State private var showingRentEstimator: Bool = false
+    @State private var showingOfferCalc: Bool = false
+    @State private var showingCashBuyer: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -64,6 +66,16 @@ struct CalculatorsTabView: View {
                         ) {
                             showingRefinance = true
                         }
+                        
+                        CalculatorCard(
+                            icon: "tag.fill",
+                            title: "Offer Calculator",
+                            subtitle: "Calculate max offer based on target returns",
+                            color: .cyan,
+                            isPremium: true
+                        ) {
+                            showingOfferCalc = true
+                        }
                     }
                     .padding()
                     .background(AppColors.cardBackground)
@@ -92,6 +104,15 @@ struct CalculatorsTabView: View {
                         ) {
                             showingRentEstimator = true
                         }
+                        
+                        CalculatorCard(
+                            icon: "banknote.fill",
+                            title: "Cash Buyer Mode",
+                            subtitle: "Simplified analysis without financing",
+                            color: .indigo
+                        ) {
+                            showingCashBuyer = true
+                        }
                     }
                     .padding()
                     .background(AppColors.cardBackground)
@@ -103,7 +124,7 @@ struct CalculatorsTabView: View {
                             .font(AppFonts.metricLabel)
                             .foregroundColor(AppColors.primaryTeal)
                         
-                        Text("Use the BRRRR analysis for fix-and-flip or value-add investments. The goal is to refinance out all your initial capital so you can repeat the process indefinitely!")
+                        Text("Use the Offer Calculator to work backwards from your target returns. It tells you the maximum you should pay to hit your cash flow, CoC, and cap rate goals!")
                             .font(AppFonts.caption)
                             .foregroundColor(AppColors.textSecondary)
                     }
@@ -132,6 +153,12 @@ struct CalculatorsTabView: View {
             }
             .sheet(isPresented: $showingRentEstimator) {
                 RentEstimatorView(viewModel: viewModel)
+            }
+            .sheet(isPresented: $showingOfferCalc) {
+                OfferCalculatorView(viewModel: viewModel)
+            }
+            .sheet(isPresented: $showingCashBuyer) {
+                CashBuyerModeView(viewModel: viewModel)
             }
         }
     }
