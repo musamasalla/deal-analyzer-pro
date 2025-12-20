@@ -93,7 +93,7 @@ struct BRRRRAnalysisView: View {
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
                             BRRRRMetricCard(
                                 title: "Cash Left In Deal",
-                                value: formatCurrency(cashLeftInDeal),
+                                value: CurrencyFormatter.format(cashLeftInDeal),
                                 color: cashLeftInDeal <= 0 ? AppColors.successGreen : AppColors.warningAmber
                             )
                             
@@ -105,13 +105,13 @@ struct BRRRRAnalysisView: View {
                             
                             BRRRRMetricCard(
                                 title: "Monthly Cash Flow",
-                                value: formatCurrency(monthlyCashFlow),
+                                value: CurrencyFormatter.format(monthlyCashFlow),
                                 color: monthlyCashFlow >= 0 ? AppColors.successGreen : AppColors.dangerRed
                             )
                             
                             BRRRRMetricCard(
                                 title: "Equity Created",
-                                value: formatCurrency(equityCreated),
+                                value: CurrencyFormatter.format(equityCreated),
                                 color: AppColors.primaryTeal
                             )
                         }
@@ -183,18 +183,18 @@ struct BRRRRAnalysisView: View {
                             .font(AppFonts.metricLabel)
                             .foregroundColor(AppColors.textSecondary)
                         
-                        SummaryRow(label: "Total Investment", value: formatCurrency(totalInvestment))
-                        SummaryRow(label: "Refinance Amount", value: formatCurrency(refinanceAmount))
+                        SummaryRow(label: "Total Investment", value: CurrencyFormatter.format(totalInvestment))
+                        SummaryRow(label: "Refinance Amount", value: CurrencyFormatter.format(refinanceAmount))
                         
                         Divider().background(AppColors.divider)
                         
-                        SummaryRow(label: "Monthly Rent", value: formatCurrency(monthlyRent))
-                        SummaryRow(label: "Monthly Expenses", value: "-" + formatCurrency(monthlyExpenses))
-                        SummaryRow(label: "Monthly Mortgage", value: "-" + formatCurrency(monthlyMortgage))
+                        SummaryRow(label: "Monthly Rent", value: CurrencyFormatter.format(monthlyRent))
+                        SummaryRow(label: "Monthly Expenses", value: "-" + CurrencyFormatter.format(monthlyExpenses))
+                        SummaryRow(label: "Monthly Mortgage", value: "-" + CurrencyFormatter.format(monthlyMortgage))
                         
                         Divider().background(AppColors.divider)
                         
-                        SummaryRow(label: "Net Monthly", value: formatCurrency(monthlyCashFlow), isHighlighted: true)
+                        SummaryRow(label: "Net Monthly", value: CurrencyFormatter.format(monthlyCashFlow), isHighlighted: true)
                     }
                     .padding()
                     .background(AppColors.cardBackground)
@@ -212,13 +212,6 @@ struct BRRRRAnalysisView: View {
                 }
             }
         }
-    }
-    
-    private func formatCurrency(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return formatter.string(from: NSNumber(value: value)) ?? "$0"
     }
 }
 

@@ -28,11 +28,7 @@ struct AnimatedNumber: View {
     var formattedValue: String {
         switch format {
         case .currency:
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .currency
-            formatter.maximumFractionDigits = 0
-            let prefix = displayValue >= 0 ? "" : ""
-            return prefix + (formatter.string(from: NSNumber(value: displayValue)) ?? "$0")
+            return CurrencyFormatter.format(displayValue)
         case .percent:
             return String(format: "%.1f%%", displayValue)
         case .decimal(let places):

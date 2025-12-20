@@ -245,10 +245,7 @@ struct ExpensesSection: View {
     }
     
     private func formatCurrency(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return formatter.string(from: NSNumber(value: value)) ?? "$0"
+        return CurrencyFormatter.format(value)
     }
 }
 

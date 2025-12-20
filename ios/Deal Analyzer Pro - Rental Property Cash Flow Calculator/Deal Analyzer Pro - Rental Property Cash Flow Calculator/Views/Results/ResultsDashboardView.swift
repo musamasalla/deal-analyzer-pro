@@ -100,7 +100,7 @@ struct ResultsDashboardView: View {
                             Text("5-Year Projection")
                                 .font(AppFonts.bodyBold)
                             
-                            Text("Total return: \(formatCurrency(viewModel.results.fiveYearProjection.totalReturn))")
+                            Text("Total return: \(CurrencyFormatter.format(viewModel.results.fiveYearProjection.totalReturn))")
                                 .font(AppFonts.caption)
                                 .opacity(0.8)
                         }
@@ -170,13 +170,6 @@ struct ResultsDashboardView: View {
         return String(format: "%.1f%%", value)
     }
     
-    private func formatCurrency(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return formatter.string(from: NSNumber(value: value)) ?? "$0"
-    }
-    
     private func metricColor(for value: Double, goodThreshold: Double, greatThreshold: Double) -> Color {
         if value >= greatThreshold {
             return AppColors.successGreen
@@ -205,19 +198,19 @@ struct PurchaseSummaryCard: View {
             VStack(spacing: 8) {
                 SummaryRow(
                     label: "Purchase Price",
-                    value: formatCurrency(viewModel.deal.purchasePrice)
+                    value: CurrencyFormatter.format(viewModel.deal.purchasePrice)
                 )
                 
                 if !viewModel.deal.isCashPurchase {
                     SummaryRow(
                         label: "Down Payment (\(Int(viewModel.deal.downPaymentPercent))%)",
-                        value: formatCurrency(viewModel.deal.downPaymentAmount)
+                        value: CurrencyFormatter.format(viewModel.deal.downPaymentAmount)
                     )
                 }
                 
                 SummaryRow(
                     label: "Closing Costs (\(Int(viewModel.deal.closingCostPercent))%)",
-                    value: formatCurrency(viewModel.deal.closingCosts)
+                    value: CurrencyFormatter.format(viewModel.deal.closingCosts)
                 )
                 
                 Divider()
@@ -225,7 +218,7 @@ struct PurchaseSummaryCard: View {
                 
                 SummaryRow(
                     label: "Total Cash Needed",
-                    value: formatCurrency(viewModel.results.totalCashNeeded),
+                    value: CurrencyFormatter.format(viewModel.results.totalCashNeeded),
                     isHighlighted: true
                 )
                 
@@ -235,13 +228,13 @@ struct PurchaseSummaryCard: View {
                     
                     SummaryRow(
                         label: "Monthly Mortgage (P&I)",
-                        value: formatCurrency(viewModel.results.monthlyMortgagePayment)
+                        value: CurrencyFormatter.format(viewModel.results.monthlyMortgagePayment)
                     )
                 }
                 
                 SummaryRow(
                     label: "Monthly Operating Expenses",
-                    value: formatCurrency(viewModel.deal.monthlyOperatingExpenses)
+                    value: CurrencyFormatter.format(viewModel.deal.monthlyOperatingExpenses)
                 )
                 
                 Divider()
@@ -249,7 +242,7 @@ struct PurchaseSummaryCard: View {
                 
                 SummaryRow(
                     label: "Break-Even Rent",
-                    value: formatCurrency(viewModel.results.breakEvenRent),
+                    value: CurrencyFormatter.format(viewModel.results.breakEvenRent),
                     subtitle: "Minimum rent to cover costs"
                 )
             }
@@ -257,13 +250,6 @@ struct PurchaseSummaryCard: View {
         .padding(16)
         .background(AppColors.cardBackground)
         .cornerRadius(16)
-    }
-    
-    private func formatCurrency(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return formatter.string(from: NSNumber(value: value)) ?? "$0"
     }
 }
 

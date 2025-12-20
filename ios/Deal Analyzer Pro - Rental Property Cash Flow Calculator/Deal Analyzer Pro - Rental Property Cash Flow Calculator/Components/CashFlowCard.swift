@@ -69,7 +69,7 @@ struct CashFlowCard: View {
                             .font(AppFonts.caption2)
                             .foregroundColor(.white.opacity(0.7))
                         
-                        Text(formatCurrency(annualCashFlow))
+                        Text(CurrencyFormatter.format(annualCashFlow, showSign: true))
                             .font(AppFonts.title2)
                             .foregroundColor(.white)
                     }
@@ -94,15 +94,8 @@ struct CashFlowCard: View {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 0
+        formatter.locale = Locale(identifier: "en_US")
         return formatter.string(from: NSNumber(value: value)) ?? "0"
-    }
-    
-    private func formatCurrency(_ value: Double) -> String {
-        let prefix = value >= 0 ? "+" : ""
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return prefix + (formatter.string(from: NSNumber(value: value)) ?? "$0")
     }
 }
 
@@ -119,7 +112,7 @@ struct CompactCashFlowBadge: View {
             Image(systemName: isPositive ? "arrow.up" : "arrow.down")
                 .font(.system(size: 10, weight: .bold))
             
-            Text(formatCurrency(monthlyCashFlow))
+            Text(CurrencyFormatter.format(monthlyCashFlow, showSign: true))
                 .font(AppFonts.bodyBold)
         }
         .foregroundColor(isPositive ? AppColors.successGreen : AppColors.dangerRed)
@@ -130,14 +123,6 @@ struct CompactCashFlowBadge: View {
                 .opacity(0.15)
         )
         .cornerRadius(8)
-    }
-    
-    private func formatCurrency(_ value: Double) -> String {
-        let prefix = value >= 0 ? "+" : ""
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return prefix + (formatter.string(from: NSNumber(value: value)) ?? "$0")
     }
 }
 
@@ -156,7 +141,7 @@ struct CashFlowPerDoorBadge: View {
                 .font(.system(size: 16))
             
             VStack(alignment: .leading, spacing: 2) {
-                Text("\(formatCurrency(cashFlowPerDoor))/door")
+                Text("\(CurrencyFormatter.format(cashFlowPerDoor))/door")
                     .font(AppFonts.bodyBold)
                     .foregroundColor(isGood ? AppColors.successGreen : AppColors.warningAmber)
                 
@@ -172,13 +157,6 @@ struct CashFlowPerDoorBadge: View {
             RoundedRectangle(cornerRadius: 12)
                 .stroke(isGood ? AppColors.successGreen.opacity(0.3) : AppColors.warningAmber.opacity(0.3), lineWidth: 1)
         )
-    }
-    
-    private func formatCurrency(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return formatter.string(from: NSNumber(value: value)) ?? "$0"
     }
 }
 

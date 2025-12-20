@@ -94,11 +94,7 @@ struct DashboardWidgetView: View {
     }
     
     private func formatCurrency(_ value: Double) -> String {
-        let prefix = value >= 0 ? "+" : ""
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return prefix + (formatter.string(from: NSNumber(value: value)) ?? "$0")
+        return CurrencyFormatter.format(value, showSign: true)
     }
     
     private func metricColor(_ value: Double, threshold: Double) -> Color {

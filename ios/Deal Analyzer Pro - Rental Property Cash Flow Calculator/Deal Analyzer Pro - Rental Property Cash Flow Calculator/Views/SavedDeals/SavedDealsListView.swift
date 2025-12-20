@@ -138,7 +138,7 @@ struct SavedDealCard: View {
             
             // Property Info
             HStack(spacing: 16) {
-                Label(formatCurrency(deal.purchasePrice), systemImage: "dollarsign.circle")
+                Label(CurrencyFormatter.format(deal.purchasePrice), systemImage: "dollarsign.circle")
                 Label("\(deal.bedrooms)bd/\(String(format: "%.0f", deal.bathrooms))ba", systemImage: "bed.double")
                 Label(deal.propertyType.rawValue, systemImage: deal.propertyType.iconName)
             }
@@ -155,7 +155,7 @@ struct SavedDealCard: View {
                         .font(AppFonts.caption)
                         .foregroundColor(AppColors.textMuted)
                     
-                    Text(formatCurrency(results.monthlyCashFlow, showSign: true))
+                    Text(CurrencyFormatter.format(results.monthlyCashFlow, showSign: true))
                         .font(AppFonts.bodyBold)
                         .foregroundColor(results.monthlyCashFlow >= 0 ? AppColors.successGreen : AppColors.dangerRed)
                 }
@@ -211,14 +211,6 @@ struct SavedDealCard: View {
             }
         }
     }
-    
-    private func formatCurrency(_ value: Double, showSign: Bool = false) -> String {
-        let prefix = showSign && value > 0 ? "+" : ""
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return prefix + (formatter.string(from: NSNumber(value: value)) ?? "$0")
-    }
 }
 
 // MARK: - Empty State
@@ -240,6 +232,8 @@ struct EmptySavedDealsView: View {
                 .multilineTextAlignment(.center)
         }
         .padding(40)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(AppColors.background)
     }
 }
 
@@ -271,8 +265,8 @@ struct DealDetailSheet: View {
                             .foregroundColor(AppColors.textSecondary)
                         
                         VStack(spacing: 8) {
-                            SummaryRow(label: "Purchase Price", value: formatCurrency(deal.purchasePrice))
-                            SummaryRow(label: "Monthly Rent", value: formatCurrency(deal.monthlyRent))
+                            SummaryRow(label: "Purchase Price", value: CurrencyFormatter.format(deal.purchasePrice))
+                            SummaryRow(label: "Monthly Rent", value: CurrencyFormatter.format(deal.monthlyRent))
                             SummaryRow(label: "Property Type", value: deal.propertyType.rawValue)
                             SummaryRow(label: "Beds/Baths", value: "\(deal.bedrooms) / \(String(format: "%.1f", deal.bathrooms))")
                         }
@@ -323,13 +317,6 @@ struct DealDetailSheet: View {
                 }
             }
         }
-    }
-    
-    private func formatCurrency(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return formatter.string(from: NSNumber(value: value)) ?? "$0"
     }
 }
 

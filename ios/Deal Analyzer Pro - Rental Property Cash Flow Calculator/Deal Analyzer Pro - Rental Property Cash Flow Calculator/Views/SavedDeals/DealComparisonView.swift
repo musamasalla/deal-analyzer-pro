@@ -165,7 +165,7 @@ struct SelectableDealCard: View {
                         .font(AppFonts.bodyBold)
                         .foregroundColor(AppColors.textPrimary)
                     
-                    Text(formatCurrency(deal.purchasePrice))
+                    Text(CurrencyFormatter.format(deal.purchasePrice))
                         .font(AppFonts.caption)
                         .foregroundColor(AppColors.textSecondary)
                 }
@@ -173,7 +173,7 @@ struct SelectableDealCard: View {
                 Spacer()
                 
                 VStack(alignment: .trailing, spacing: 4) {
-                    Text(formatCurrency(results.monthlyCashFlow, showSign: true))
+                    Text(CurrencyFormatter.format(results.monthlyCashFlow, showSign: true))
                         .font(AppFonts.bodyBold)
                         .foregroundColor(results.monthlyCashFlow >= 0 ? AppColors.successGreen : AppColors.dangerRed)
                     
@@ -190,14 +190,6 @@ struct SelectableDealCard: View {
                     .stroke(isSelected ? AppColors.primaryTeal : AppColors.border, lineWidth: isSelected ? 2 : 1)
             )
         }
-    }
-    
-    private func formatCurrency(_ value: Double, showSign: Bool = false) -> String {
-        let prefix = showSign && value > 0 ? "+" : ""
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return prefix + (formatter.string(from: NSNumber(value: value)) ?? "$0")
     }
 }
 
@@ -256,13 +248,13 @@ struct ComparisonDealColumn: View {
             
             // All Metrics
             VStack(spacing: 8) {
-                ComparisonMetricRow(label: "Purchase Price", value: formatCurrency(deal.purchasePrice))
-                ComparisonMetricRow(label: "Monthly Rent", value: formatCurrency(deal.monthlyRent))
-                ComparisonMetricRow(label: "Cash Flow", value: formatCurrency(results.monthlyCashFlow, showSign: true), 
+                ComparisonMetricRow(label: "Purchase Price", value: CurrencyFormatter.format(deal.purchasePrice))
+                ComparisonMetricRow(label: "Monthly Rent", value: CurrencyFormatter.format(deal.monthlyRent))
+                ComparisonMetricRow(label: "Cash Flow", value: CurrencyFormatter.format(results.monthlyCashFlow, showSign: true), 
                                    valueColor: results.monthlyCashFlow >= 0 ? AppColors.successGreen : AppColors.dangerRed)
                 ComparisonMetricRow(label: "CoC Return", value: String(format: "%.1f%%", results.cashOnCashReturn))
                 ComparisonMetricRow(label: "Cap Rate", value: String(format: "%.1f%%", results.capRate))
-                ComparisonMetricRow(label: "Cash Needed", value: formatCurrency(results.totalCashNeeded))
+                ComparisonMetricRow(label: "Cash Needed", value: CurrencyFormatter.format(results.totalCashNeeded))
             }
         }
         .padding(16)
@@ -278,7 +270,7 @@ struct ComparisonDealColumn: View {
     private var primaryMetricValue: String {
         switch comparisonMetric {
         case .cashFlow:
-            return formatCurrency(results.monthlyCashFlow, showSign: true)
+            return CurrencyFormatter.format(results.monthlyCashFlow, showSign: true)
         case .cocReturn:
             return String(format: "%.1f%%", results.cashOnCashReturn)
         case .capRate:
@@ -293,14 +285,6 @@ struct ComparisonDealColumn: View {
         case .cocReturn, .capRate:
             return AppColors.textAccent
         }
-    }
-    
-    private func formatCurrency(_ value: Double, showSign: Bool = false) -> String {
-        let prefix = showSign && value > 0 ? "+" : ""
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return prefix + (formatter.string(from: NSNumber(value: value)) ?? "$0")
     }
 }
 
@@ -342,6 +326,8 @@ struct EmptyComparisonView: View {
                 .multilineTextAlignment(.center)
         }
         .padding(40)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(AppColors.background)
     }
 }
 

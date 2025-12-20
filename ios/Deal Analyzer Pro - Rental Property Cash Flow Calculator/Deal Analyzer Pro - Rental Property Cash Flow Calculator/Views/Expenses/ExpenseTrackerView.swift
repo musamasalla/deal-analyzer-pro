@@ -181,10 +181,7 @@ struct ExpenseTrackerView: View {
     }
     
     private func formatCurrency(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return formatter.string(from: NSNumber(value: value)) ?? "$0"
+        return CurrencyFormatter.format(value)
     }
 }
 
@@ -280,10 +277,7 @@ struct ExpenseCategoryRow: View {
     }
     
     private func formatCurrency(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return formatter.string(from: NSNumber(value: value)) ?? "$0"
+        return CurrencyFormatter.format(value)
     }
 }
 
@@ -328,10 +322,7 @@ struct ExpenseRow: View {
     }
     
     private func formatCurrency(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 0
-        return formatter.string(from: NSNumber(value: value)) ?? "$0"
+        return CurrencyFormatter.format(value)
     }
     
     private func formatDate(_ date: Date) -> String {
