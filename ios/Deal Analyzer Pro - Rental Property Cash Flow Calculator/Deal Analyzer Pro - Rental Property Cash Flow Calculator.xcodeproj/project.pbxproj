@@ -19,9 +19,22 @@
 		E88F85962EF2E9DE00AC0BE5 /* Deal Analyzer Pro - Rental Property Cash Flow Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Deal Analyzer Pro - Rental Property Cash Flow Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E873F1772EF6B3960080A49A /* Exceptions for "Deal Analyzer Pro - Rental Property Cash Flow Calculator" folder in "Deal Analyzer Pro - Rental Property Cash Flow Calculator" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Deal-Analyzer-Pro---Rental-Property-Cash-Flow-Calculator-Info.plist",
+			);
+			target = E88F85952EF2E9DE00AC0BE5 /* Deal Analyzer Pro - Rental Property Cash Flow Calculator */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E88F85982EF2E9DE00AC0BE5 /* Deal Analyzer Pro - Rental Property Cash Flow Calculator */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E873F1772EF6B3960080A49A /* Exceptions for "Deal Analyzer Pro - Rental Property Cash Flow Calculator" folder in "Deal Analyzer Pro - Rental Property Cash Flow Calculator" target */,
+			);
 			path = "Deal Analyzer Pro - Rental Property Cash Flow Calculator";
 			sourceTree = "<group>";
 		};
@@ -288,6 +301,7 @@
 				DEVELOPMENT_TEAM = 9Q4TV94VR7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Deal-Analyzer-Pro---Rental-Property-Cash-Flow-Calculator-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -320,6 +334,7 @@
 				DEVELOPMENT_TEAM = 9Q4TV94VR7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Deal-Analyzer-Pro---Rental-Property-Cash-Flow-Calculator-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
