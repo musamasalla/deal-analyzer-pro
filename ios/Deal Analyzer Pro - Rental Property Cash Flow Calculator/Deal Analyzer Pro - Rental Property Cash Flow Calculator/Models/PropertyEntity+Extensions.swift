@@ -42,6 +42,7 @@ extension PropertyEntity {
         deal.notes = notes ?? ""
         deal.createdAt = createdAt ?? Date()
         deal.updatedAt = updatedAt ?? Date()
+        deal.isArchived = isArchived
         
         if let typeRaw = propertyTypeRaw,
            let type = PropertyType(rawValue: typeRaw) {
@@ -81,6 +82,7 @@ extension PropertyEntity {
         rating = Int16(deal.rating)
         notes = deal.notes
         propertyTypeRaw = deal.propertyType.rawValue
+        isArchived = deal.isArchived
         updatedAt = Date()
         
         if createdAt == nil {

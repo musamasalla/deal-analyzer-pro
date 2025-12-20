@@ -13,6 +13,7 @@ struct PropertyDeal: Identifiable, Codable {
     var name: String = ""
     var createdAt: Date = Date()
     var updatedAt: Date = Date()
+    var isArchived: Bool = false
     
     // MARK: - Property Details
     var purchasePrice: Double = 0

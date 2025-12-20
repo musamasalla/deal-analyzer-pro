@@ -59,6 +59,13 @@ class DealDataService {
             let entity = existing ?? PropertyEntity(context: viewContext)
             entity.update(from: deal)
             try viewContext.save()
+            
+            // Sync to cloud if authenticated
+            if AppConfiguration.Features.enableCloudSync && AuthService.shared.isAuthenticated {
+                Task {
+                    try? await CloudSyncService.shared.syncProperty(deal)
+                }
+            }
         } catch {
             print("Save failed: \(error)")
         }
@@ -74,6 +81,13 @@ class DealDataService {
             if let entity = try viewContext.fetch(request).first {
                 viewContext.delete(entity)
                 try viewContext.save()
+                
+                // Sync deletion to cloud if authenticated
+                if AppConfiguration.Features.enableCloudSync && AuthService.shared.isAuthenticated {
+                    Task {
+                        try? await CloudSyncService.shared.deleteProperty(deal)
+                    }
+                }
             }
         } catch {
             print("Delete failed: \(error)")
@@ -91,6 +105,15 @@ class DealDataService {
                 entity.isArchived = true
                 entity.updatedAt = Date()
                 try viewContext.save()
+                
+                // Sync archive state to cloud if authenticated
+                var archivedDeal = deal
+                archivedDeal.isArchived = true
+                if AppConfiguration.Features.enableCloudSync && AuthService.shared.isAuthenticated {
+                    Task {
+                        try? await CloudSyncService.shared.syncProperty(archivedDeal)
+                    }
+                }
             }
         } catch {
             print("Archive failed: \(error)")

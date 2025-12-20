@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E8CF1FA72EF67E6300EF6949 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = E8CF1FA62EF67E6300EF6949 /* Auth */; };
+		E8CF1FA92EF67E6300EF6949 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = E8CF1FA82EF67E6300EF6949 /* Functions */; };
+		E8CF1FAB2EF67E6300EF6949 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = E8CF1FAA2EF67E6300EF6949 /* PostgREST */; settings = {ATTRIBUTES = (Required, ); }; };
+		E8CF1FAD2EF67E6300EF6949 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = E8CF1FAC2EF67E6300EF6949 /* Realtime */; };
+		E8CF1FAF2EF67E6300EF6949 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = E8CF1FAE2EF67E6300EF6949 /* Storage */; };
+		E8CF1FBB2EF682C900EF6949 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = E8CF1FBA2EF682C900EF6949 /* Supabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		E88F85962EF2E9DE00AC0BE5 /* Deal Analyzer Pro - Rental Property Cash Flow Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Deal Analyzer Pro - Rental Property Cash Flow Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +32,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8CF1FAB2EF67E6300EF6949 /* PostgREST in Frameworks */,
+				E8CF1FA92EF67E6300EF6949 /* Functions in Frameworks */,
+				E8CF1FBB2EF682C900EF6949 /* Supabase in Frameworks */,
+				E8CF1FA72EF67E6300EF6949 /* Auth in Frameworks */,
+				E8CF1FAF2EF67E6300EF6949 /* Storage in Frameworks */,
+				E8CF1FAD2EF67E6300EF6949 /* Realtime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +48,7 @@
 			isa = PBXGroup;
 			children = (
 				E88F85982EF2E9DE00AC0BE5 /* Deal Analyzer Pro - Rental Property Cash Flow Calculator */,
+				E8CF1FB92EF682C900EF6949 /* Frameworks */,
 				E88F85972EF2E9DE00AC0BE5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +59,13 @@
 				E88F85962EF2E9DE00AC0BE5 /* Deal Analyzer Pro - Rental Property Cash Flow Calculator.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E8CF1FB92EF682C900EF6949 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,6 +88,12 @@
 			);
 			name = "Deal Analyzer Pro - Rental Property Cash Flow Calculator";
 			packageProductDependencies = (
+				E8CF1FA62EF67E6300EF6949 /* Auth */,
+				E8CF1FA82EF67E6300EF6949 /* Functions */,
+				E8CF1FAA2EF67E6300EF6949 /* PostgREST */,
+				E8CF1FAC2EF67E6300EF6949 /* Realtime */,
+				E8CF1FAE2EF67E6300EF6949 /* Storage */,
+				E8CF1FBA2EF682C900EF6949 /* Supabase */,
 			);
 			productName = "Deal Analyzer Pro - Rental Property Cash Flow Calculator";
 			productReference = E88F85962EF2E9DE00AC0BE5 /* Deal Analyzer Pro - Rental Property Cash Flow Calculator.app */;
@@ -94,6 +123,9 @@
 			);
 			mainGroup = E88F858D2EF2E9DE00AC0BE5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E8CF1FA52EF67E6300EF6949 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E88F85972EF2E9DE00AC0BE5 /* Products */;
 			projectDirPath = "";
@@ -332,6 +364,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E8CF1FA52EF67E6300EF6949 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase-community/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E8CF1FA62EF67E6300EF6949 /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8CF1FA52EF67E6300EF6949 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		E8CF1FA82EF67E6300EF6949 /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8CF1FA52EF67E6300EF6949 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		E8CF1FAA2EF67E6300EF6949 /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8CF1FA52EF67E6300EF6949 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+		E8CF1FAC2EF67E6300EF6949 /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8CF1FA52EF67E6300EF6949 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		E8CF1FAE2EF67E6300EF6949 /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8CF1FA52EF67E6300EF6949 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		E8CF1FBA2EF682C900EF6949 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8CF1FA52EF67E6300EF6949 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E88F858E2EF2E9DE00AC0BE5 /* Project object */;
 }

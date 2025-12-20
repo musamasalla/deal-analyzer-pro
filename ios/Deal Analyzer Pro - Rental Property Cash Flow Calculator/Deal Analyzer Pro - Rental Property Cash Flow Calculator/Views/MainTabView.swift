@@ -25,7 +25,7 @@ struct MainTabView: View {
             case .saved: return "Saved"
             case .compare: return "Compare"
             case .calculators: return "Calc"
-            case .settings: return "Settings"
+            case .settings: return "Account"
             }
         }
         
@@ -35,7 +35,7 @@ struct MainTabView: View {
             case .saved: return "folder.fill"
             case .compare: return "square.stack.3d.up.fill"
             case .calculators: return "function"
-            case .settings: return "gearshape.fill"
+            case .settings: return "person.circle.fill"
             }
         }
     }
@@ -66,7 +66,7 @@ struct MainTabView: View {
                 }
                 .tag(Tab.calculators)
             
-            SettingsView()
+            AccountView()
                 .tabItem {
                     Label(Tab.settings.title, systemImage: Tab.settings.icon)
                 }

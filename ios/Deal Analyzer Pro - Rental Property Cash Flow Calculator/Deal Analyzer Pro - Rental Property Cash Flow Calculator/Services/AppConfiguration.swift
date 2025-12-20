@@ -44,7 +44,7 @@ struct AppConfiguration {
     
     // MARK: - Feature Flags
     struct Features {
-        static let enableCloudSync = false // Enable when CloudKit is ready
+        static let enableCloudSync = true // Supabase integration ready
         static let enableAnalytics = false // Enable when analytics are configured
         static let enableCrashReporting = false // Enable when crash reporting is set up
         static let debugPremium = false // Set to true to unlock all premium features for testing
@@ -75,6 +75,12 @@ struct AppConfiguration {
         static let onboardingComplete = "hasCompletedOnboarding"
         static let isPremiumUser = "isPremiumUser"
         static let lastSyncDate = "lastCloudSyncDate"
+    }
+    
+    // MARK: - Supabase
+    struct Supabase {
+        static let url = URL(string: "https://hdcrghjgprbrghmszzsu.supabase.co")!
+        static let apiKey = "sb_publishable_4VuLLOKdoni0oMeUq06Pbw_wWcygKmI"
     }
 }
 
